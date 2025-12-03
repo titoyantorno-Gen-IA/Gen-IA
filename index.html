@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulários O Assador</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+
+        h1 {
+            color: #2d3748;
+            margin-bottom: 8px;
+            font-size: 24px;
+        }
+
+        h2 {
+            color: #4a5568;
+            margin-top: 32px;
+            margin-bottom: 16px;
+            font-size: 18px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #667eea;
+        }
+
+        .question {
+            margin-bottom: 24px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 8px;
+            font-size: 15px;
+        }
+
+        input[type="text"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 16px;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .checkbox-group,
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .checkbox-item,
+        .radio-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background: #f7fafc;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .checkbox-item:hover,
+        .radio-item:hover {
+            background: #edf2f7;
+        }
+
+        input[type="checkbox"],
+        input[type="radio"] {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        .checkbox-item label,
+        .radio-item label {
+            margin: 0;
+            font-weight: 400;
+            cursor: pointer;
+            flex: 1;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 32px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .form-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #667eea, transparent);
+            margin: 48px 0;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 16px;
+            }
+
+            h1 {
+                font-size: 22px;
+            }
+
+            h2 {
+                font-size: 17px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📋 Formulário A — Diagnóstico do Negócio</h1>
+        <p style="color: #718096; margin-bottom: 24px;">O Assador</p>
+
+        <form id="formA">
+            <h2>1. Dados Básicos</h2>
+
+            <div class="question">
+                <label for="nome">1. Qual é o seu nome?</label>
+                <input type="text" id="nome" name="nome" required>
+            </div>
+
+            <div class="question">
+                <label>2. Qual é o seu papel no O Assador?</label>
+                <div class="radio-group">
+                    <div class="radio-item">
+                        <input type="radio" id="papel1" name="papel" value="Assador" required>
+                        <label for="papel1">Assador</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="papel2" name="papel" value="Produção / Operacional">
+                        <label for="papel2">Produção / Operacional</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="papel3" name="papel" value="Gestão / Administrativo">
+                        <label for="papel3">Gestão / Administrativo</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="papel4" name="papel" value="Atendimento / Comercial">
+                        <label for="papel4">Atendimento / Comercial</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="papel5" name="papel" value="Outro">
+                        <label for="papel5">Outro</label>
+                    </div>
+                </div>
+            </div>
+
+            <h2>2. Sobre o Negócio Hoje</h2>
+
+            <div class="question">
+                <label>3. Como vocês recebem hoje os pedidos de novos eventos?</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="pedido1" name="pedidos" value="WhatsApp">
+                        <label for="pedido1">WhatsApp</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="pedido2" name="pedidos" value="Instagram">
+                        <label for="pedido2">Instagram</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="pedido3" name="pedidos" value="Indicação">
+                        <label for="pedido3">Indicação</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="pedido4" name="pedidos" value="Site">
+                        <label for="pedido4">Site</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="pedido5" name="pedidos" value="Telefone">
+                        <label for="pedido5">Telefone</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="pedido6" name="pedidos" value="Outro">
+                        <label for="pedido6">Outro</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question">
+                <label>4. Quantos eventos vocês realizam em média por mês?</label>
+                <div class="radio-group">
+                    <div class="radio-item">
+                        <input type="radio" id="eventos1" name="eventos_mes" value="1 a 3" required>
+                        <label for="eventos1">1 a 3</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="eventos2" name="eventos_mes" value="4 a 8">
+                        <label for="eventos2">4 a 8</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="eventos3" name="eventos_mes" value="9 a 15">
+                        <label for="eventos3">9 a 15</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="eventos4" name="eventos_mes" value="Mais de 15">
+                        <label for="eventos4">Mais de 15</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question">
+                <label>5. Quais são os serviços mais procurados hoje?</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="servico1" name="servicos" value="Churrasco opção 01">
+                        <label for="servico1">Churrasco opção 01</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="servico2" name="servicos" value="Churrasco opção 02">
+                        <label for="servico2">Churrasco opção 02</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="servico3" name="servicos" value="Parrilla Master">
+                        <label for="servico3">Parrilla Master</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="servico4" name="servicos" value="Carreteiro Campeiro">
+                        <label for="servico4">Carreteiro Campeiro</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="servico5" name="servicos" value="Burger Show">
+                        <label for="servico5">Burger Show</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="servico6" name="servicos" value="Espetinhos do Assador">
+                        <label for="servico6">Espetinhos do Assador</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="servico7" name="servicos" value="Sobremesas">
+                        <label for="servico7">Sobremesas</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="servico8" name="servicos" value="Outros">
+                        <label for="servico8">Outros (especificar)</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question">
+                <label>6. Qual é o tamanho médio dos eventos que vocês fazem?</label>
+                <div class="radio-group">
+                    <div class="radio-item">
+                        <input type="radio" id="tamanho1" name="tamanho" value="Até 20 pessoas" required>
+                        <label for="tamanho1">Até 20 pessoas</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="tamanho2" name="tamanho" value="21 a 50 pessoas">
+                        <label for="tamanho2">21 a 50 pessoas</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="tamanho3" name="tamanho" value="51 a 100 pessoas">
+                        <label for="tamanho3">51 a 100 pessoas</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="tamanho4" name="tamanho" value="Mais de 100 pessoas">
+                        <label for="tamanho4">Mais de 100 pessoas</label>
+                    </div>
+                </div>
+            </div>
+
+            <h2>3. Dores e Desafios</h2>
+
+            <div class="question">
+                <label>7. Quais são as maiores dificuldades que vocês enfrentam hoje no planejamento dos eventos?</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="dif1" name="dificuldades" value="Definir quantidade de carnes">
+                        <label for="dif1">Definir a quantidade de carnes e acompanhamentos</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="dif2" name="dificuldades" value="Calcular equipe">
+                        <label for="dif2">Calcular equipe (assadores, ajudantes, garçons)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="dif3" name="dificuldades" value="Organizar logística">
+                        <label for="dif3">Organizar logística</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="dif4" name="dificuldades" value="Fazer orçamentos">
+                        <label for="dif4">Fazer orçamentos</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="dif5" name="dificuldades" value="Troca de informações com cliente">
+                        <label for="dif5">Troca de informações com o cliente</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="dif6" name="dificuldades" value="Comunicação interna">
+                        <label for="dif6">Comunicação interna com o time</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="dif7" name="dificuldades" value="Controle de estoque">
+                        <label for="dif7">Controle de estoque e compras</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="dif8" name="dificuldades" value="Outro">
+                        <label for="dif8">Outro</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question">
+                <label>8. Em qual etapa vocês sentem que perdem mais tempo?</label>
+                <div class="radio-group">
+                    <div class="radio-item">
+                        <input type="radio" id="etapa1" name="etapa_tempo" value="Levantamento com cliente" required>
+                        <label for="etapa1">Levantamento de informações com o cliente</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="etapa2" name="etapa_tempo" value="Montagem do orçamento">
+                        <label for="etapa2">Montagem do orçamento</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="etapa3" name="etapa_tempo" value="Definir cardápio">
+                        <label for="etapa3">Definir cardápio e quantidades</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="etapa4" name="etapa_tempo" value="Montar equipe">
+                        <label for="etapa4">Montar a equipe do evento</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="etapa5" name="etapa_tempo" value="Planejar logística">
+                        <label for="etapa5">Planejar logística</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="etapa6" name="etapa_tempo" value="Comprar insumos">
+                        <label for="etapa6">Comprar insumos</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="etapa7" name="etapa_tempo" value="Outra etapa">
+                        <label for="etapa7">Outra etapa</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question">
+                <label>9. Que tipo de erro ou retrabalho acontece com mais frequência?</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="erro1" name="erros" value="Faltou carne">
+                        <label for="erro1">Faltou carne</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="erro2" name="erros" value="Sobrou carne">
+                        <label for="erro2">Sobrou carne demais</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="erro3" name="erros" value="Acompanhamentos errados">
+                        <label for="erro3">Acompanhamentos errados</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="erro4" name="erros" value="Número de pessoas diferente">
+                        <label for="erro4">Número de pessoas diferente do combinado</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="erro5" name="erros" value="Equipe errada">
+                        <label for="erro5">Equipe acima ou abaixo</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="erro6" name="erros" value="Comunicação com cliente">
+                        <label for="erro6">Problemas de comunicação com cliente</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="erro7" name="erros" value="Comunicação interna">
+                        <label for="erro7">Problemas de comunicação interna</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="erro8" name="erros" value="Quase não temos erros">
+                        <label for="erro8">Quase não temos erros</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="erro9" name="erros" value="Outro">
+                        <label for="erro9">Outro</label>
+                    </div>
+                </div>
+            </div>
+
+            <h2>4. Processo Atual</h2>
+
+            <div class="question">
+                <label for="cardapio">10. Como vocês definem hoje o cardápio de cada evento?</label>
+                <textarea id="cardapio" name="cardapio" required></textarea>
+            </div>
+
+            <div class="question">
+                <label for="quantidade">11. Como vocês calculam hoje a quantidade de carne por convidado?</label>
+                <textarea id="quantidade" name="quantidade" required></textarea>
+            </div>
+
+            <div class="question">
+                <label for="equipe">12. Como vocês decidem quantos assadores, ajudantes e garçons vão em cada evento?</label>
+                <textarea id="equipe" name="equipe" required></textarea>
+            </div>
+
+            <div class="question">
+                <label for="compras">13. Como é organizada hoje a lista de compras para cada evento?</label>
+                <textarea id="compras" name="compras" required></textarea>
+            </div>
+
+            <div class="question">
+                <label>14. Que ferramentas vocês usam hoje para organizar os eventos?</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="ferr1" name="ferramentas" value="Planilhas">
+                        <label for="ferr1">Planilhas</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="ferr2" name="ferramentas" value="Bloco de notas">
+                        <label for="ferr2">Bloco de notas / papel</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="ferr3" name="ferramentas" value="WhatsApp">
+                        <label for="ferr3">WhatsApp</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="ferr4" name="ferramentas" value="Sistema de gestão">
+                        <label for="ferr4">Sistema de gestão</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="ferr5" name="ferramentas" value="Só memória">
+                        <label for="ferr5">Só memória</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="ferr6" name="ferramentas" value="Outro">
+                        <label for="ferr6">Outro</label>
+                    </div>
+                </div>
+            </div>
+
+            <h2>5. Sobre o Agente Inteligente</h2>
+
+            <div class="question">
+                <label>15. Se um sistema pudesse automatizar 3 coisas para vocês, quais seriam?</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="auto1" name="automatizar" value="Calcular quantidades">
+                        <label for="auto1">Calcular automaticamente quantidades</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="auto2" name="automatizar" value="Sugerir equipe">
+                        <label for="auto2">Sugerir equipe ideal</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="auto3" name="automatizar" value="Criar briefing">
+                        <label for="auto3">Criar briefing do evento</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="auto4" name="automatizar" value="Gerar lista de compras">
+                        <label for="auto4">Gerar lista de compras</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="auto5" name="automatizar" value="Gerar orçamento">
+                        <label for="auto5">Gerar orçamento</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="auto6" name="automatizar" value="Mensagem para cliente">
+                        <label for="auto6">Enviar mensagem para o cliente</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="auto7" name="automatizar" value="Instruções internas">
+                        <label for="auto7">Enviar instruções internas</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="auto8" name="automatizar" value="Outra função">
+                        <label for="auto8">Outra função</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question">
+                <label for="informacoes">16. Quais informações vocês gostariam que o sistema gerasse automaticamente para cada evento?</label>
+                <textarea id="informacoes" name="informacoes" required></textarea>
+            </div>
+
+            <div class="question">
+                <label for="perfeito">17. O que seria para você um sistema "perfeito demais para ser verdade", mas que vocês adorariam ter no O Assador?</label>
+                <textarea id="perfeito" name="perfeito" required></textarea>
+            </div>
+
+            <h2>6. Futuro do O Assador</h2>
+
+            <div class="question">
+                <label for="futuro">18. Onde vocês gostariam que o O Assador estivesse em 12 meses?</label>
+                <textarea id="futuro" name="futuro" required></textarea>
+            </div>
+
+            <div class="question">
+                <label>19. Que tipo de evento vocês gostariam de fazer mais?</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="tipo1" name="tipo_evento" value="Eventos familiares pequenos">
+                        <label for="tipo1">Eventos familiares pequenos</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="tipo2" name="tipo_evento" value="Eventos médios">
+                        <label for="tipo2">Eventos médios (20–60 pessoas)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="tipo3" name="tipo_evento" value="Casamentos e premium">
+                        <label for="tipo3">Casamentos e eventos premium</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="tipo4" name="tipo_evento" value="Eventos corporativos">
+                        <label for="tipo4">Eventos corporativos</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="tipo5" name="tipo_evento" value="Burger Show">
+                        <label for="tipo5">Burger Show</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="tipo6" name="tipo_evento" value="Carreteiro">
+                        <label for="tipo6">Carreteiro</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="tipo7" name="tipo_evento" value="Outros">
+                        <label for="tipo7">Outros</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question">
+                <label for="comentarios">20. Tem algo mais que você gostaria de comentar ou sugerir?</label>
+                <textarea id="comentarios" name="comentarios"></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">📤 Enviar Formulário A</button>
+        </form>
+
+        <div class="form-divider"></div>
+
+        <h1>👤 Formulário B — Perfil do Thiago</h1>
+        <p style="color: #718096; margin-bottom: 24px;">Informações pessoais e profissionais</p>
+
+        <form id="formB">
+            <div class="question">
+                <label for="nome_thiago">Nome completo</label>
+                <input type="text" id="nome_thiago" name="nome_thiago" value="Thiago" required>
+            </div>
+
+            <div class="question">
+                <label for="cargo">Cargo/Função</label>
+                <input type="text" id="cargo" name="cargo" placeholder="Ex: Fundador, Assador Principal, etc." required>
+            </div>
+
+            <div class="question">
+                <label for="experiencia">Tempo de experiência com churrascos/eventos</label>
+                <input type="text" id="experiencia" name="experiencia" placeholder="Ex: 10 anos" required>
+            </div>
+
+            <div class="question">
+                <label for="especializacao">Especialização ou prato favorito</label>
+                <textarea id="especializacao" name="especializacao" placeholder="Descreva sua especialidade ou o que mais gosta de preparar" required></textarea>
+            </div>
+
+            <div class="question">
+                <label for="motivacao">O que te motiva no O Assador?</label>
+                <textarea id="motivacao" name="motivacao" required></textarea>
+            </div>
+
+            <div class="question">
+                <label for="desafio">Qual é o maior desafio que você enfrenta no dia a dia?</label>
+                <textarea id="desafio" name="desafio" required></textarea>
+            </div>
+
+            <div class="question">
+                <label for="visao">Qual é a sua visão para o futuro do O Assador?</label>
+                <textarea id="visao" name="visao" required></textarea>
+            </div>
+
+            <div class="question">
+                <label for="contato">Telefone/WhatsApp para contato</label>
+                <input type="text" id="contato" name="contato" placeholder="(XX) XXXXX-XXXX" required>
+            </div>
+
+            <div class="question">
+                <label for="email">E-mail</label>
+                <input type="text" id="email" name="email" placeholder="seuemail@exemplo.com" required>
+            </div>
+
+            <div class="question">
+                <label for="observacoes">Observações adicionais</label>
+                <textarea id="observacoes" name="observacoes" placeholder="Qualquer informação adicional que você gostaria de compartilhar"></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">📤 Enviar Formulário B</button>
+        </form>
+    </div>
+
+    <script>
+        // ========================================
+        // CONFIGURAÇÃO - URL DO GOOGLE APPS SCRIPT
+        // ========================================
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwZvRyw_5W5fxy9-aG8booTm78A8iqiQ10VPL63exrVvWpaIhP0tRsH1ehOPMm1nO_l/exec';
+
+        // Función para procesar datos del formulario con múltiples valores (checkboxes)
+        function processFormData(formData) {
+            const data = {};
+            
+            for (let [key, value] of formData.entries()) {
+                if (data[key]) {
+                    // Si ya existe, convierte para array o adiciona ao array
+                    if (Array.isArray(data[key])) {
+                        data[key].push(value);
+                    } else {
+                        data[key] = [data[key], value];
+                    }
+                } else {
+                    data[key] = value;
+                }
+            }
+
+            // Convertir arrays en strings separadas por coma
+            for (let key in data) {
+                if (Array.isArray(data[key])) {
+                    data[key] = data[key].join(', ');
+                }
+            }
+
+            return data;
+        }
+
+        // Manipulação do Formulário A
+        document.getElementById('formA').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const submitBtn = e.target.querySelector('.submit-btn');
+            const originalText = submitBtn.textContent;
+            submitBtn.disabled = true;
+            submitBtn.textContent = '⏳ Enviando...';
+
+            try {
+                const formData = new FormData(e.target);
+                const data = processFormData(formData);
+                
+                // Adicionar timestamp
+                data.timestamp = new Date().toLocaleString('pt-BR');
+
+                console.log('Enviando Formulário A:', data);
+
+                // Enviar para Google Sheets
+                const response = await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                console.log('Formulário A enviado!');
+                alert('✅ Formulário A enviado com sucesso!\n\nVerifique sua planilha do Google Sheets na aba "Formulário A".');
+                e.target.reset();
+
+            } catch (error) {
+                console.error('Erro ao enviar Formulário A:', error);
+                alert('❌ Erro ao enviar formulário: ' + error.message + '\n\nVerifique o console (F12) para mais detalhes.');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalText;
+            }
+        });
+
+        // Manipulação do Formulário B
+        document.getElementById('formB').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const submitBtn = e.target.querySelector('.submit-btn');
+            const originalText = submitBtn.textContent;
+            submitBtn.disabled = true;
+            submitBtn.textContent = '⏳ Enviando...';
+
+            try {
+                const formData = new FormData(e.target);
+                const data = Object.fromEntries(formData);
+                
+                // Adicionar timestamp
+                data.timestamp = new Date().toLocaleString('pt-BR');
+
+                console.log('Enviando Formulário B:', data);
+
+                // Enviar para Google Sheets
+                const response = await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                console.log('Formulário B enviado!');
+                alert('✅ Formulário B enviado com sucesso!\n\nVerifique sua planilha do Google Sheets na aba "Formulário B - Perfil".');
+                e.target.reset();
+
+            } catch (error) {
+                console.error('Erro ao enviar Formulário B:', error);
+                alert('❌ Erro ao enviar formulário: ' + error.message + '\n\nVerifique o console (F12) para mais detalhes.');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalText;
+            }
+        });
+    </script>
+</body>
+</html>
